@@ -1,0 +1,156 @@
+\documentclass[english,aspectratio=169]{beamer}
+\usefonttheme{serif}
+\usepackage[utf8]{inputenc}
+\usepackage{pxfonts} % Or palatino or mathpazo
+\usepackage{eulervm}
+\usepackage{tabularx,booktabs}
+\usepackage{longtable}
+\newcolumntype{Y}{>{\centering\arraybackslash}X}
+\usepackage{multirow}
+\usefonttheme{serif}
+\usepackage{xcolor}
+\usepackage{soul}
+\newcommand{\mathcolorbox}[2]{\colorbox{#1}{$\displaystyle #2$}}
+
+% \usetheme{Madrid}}
+\useinnertheme{rectangles}
+\useoutertheme{infolines}
+
+\definecolor{DarkPurple1}{RGB}{32,12,37}
+\definecolor{Plum}{RGB}{184,13,72}
+\definecolor{Rose}{RGB}{255,86,87}
+\definecolor{Red}{RGB}{255,0,0}
+\definecolor{DarkRed1}{RGB}{75,21,21}
+\definecolor{DarkRed2}{RGB}{145,12,7}
+
+\definecolor{Brown}{RGB}{110,54,42}
+
+\definecolor{Orange1}{RGB}{242,151,36}
+\definecolor{Orange2}{RGB}{244,129,83}
+\definecolor{Mustard}{RGB}{253,179,56}
+\definecolor{Gold}{RGB}{254,174,2}
+\definecolor{LightYellow}{RGB}{241,226,160}
+\definecolor{Tan}{RGB}{225,221,191}
+
+\definecolor{Green}{RGB}{76,131,122}
+\definecolor{Gray}{RGB}{242,242,242}
+\definecolor{DarkGray1}{RGB}{127,127,127}
+\definecolor{DarkGray2}{RGB}{64,64,64}
+
+\definecolor{BlueGrey}{RGB}{99,143,169}
+\definecolor{DarkBlue1}{RGB}{4,37,58}
+\definecolor{DarkBlue2}{RGB}{2,81,150}
+\definecolor{DarkTeal1}{RGB}{55,108,138}
+\definecolor{DarkTeal2}{RGB}{43,106,108}
+\definecolor{DarkTeal3}{RGB}{45,129,131}
+\definecolor{Aqua}{RGB}{131,211,212}
+
+
+\definecolor{links}{HTML}{2A1B81}
+
+% \pagecolor{DarkTeal}
+
+\setbeamercolor{title}{fg=DarkRed2}
+\setbeamercolor{navigation symbols}{fg=Rose, bg=DarkRed2}
+\setbeamercolor{frametitle}{fg=DarkRed1,bg=Mustard!30}
+\setbeamercolor{section in head/foot}{fg=Brown,bg=Mustard!30}
+\setbeamercolor{subsection in head/foot}{fg=Brown,bg=Mustard!10}
+\setbeamercolor{author in head/foot}{fg=Brown,bg=Mustard!30}
+\setbeamercolor{title in head/foot}{fg=Brown,bg=Mustard!30}
+\setbeamercolor{date in head/foot}{fg=Brown,bg=Mustard!30}
+\setbeamercolor{normal text}{bg=white,fg=black}
+\setbeamercolor{section in sidebar}{fg=Brown}
+\setbeamercolor{section in sidebar shaded}{fg=Mustard}
+\setbeamercolor{section in toc}{fg=DarkRed2}
+\setbeamercolor{subsection in toc}{fg=DarkRed2!90}
+\setbeamercolor{subsubsection in toc}{fg=DarkRed2!80}
+\setbeamertemplate{enumerate items}[default]
+\setbeamercolor*{enumerate item}{bg=DarkRed2,fg=Mustard}
+\setbeamercolor*{enumerate subitem}{bg=DarkRed2,fg=Mustard}
+\setbeamercolor*{enumerate subsubitem}{bg=DarkRed2,fg=Mustard}
+\setbeamercolor*{itemize subsubitem}{bg=DarkRed2,fg=Mustard}
+% \setbeamercolor{background canvas}{fg=DarkRed,bg=DarkTeal!10}
+\setbeamertemplate{itemize item}{\color{DarkRed2}$\blacksquare$}
+\setbeamertemplate{itemize subitem}{\color{DarkRed2}$\blacktriangleright$}
+
+\setbeamercolor{caption name}{fg=DarkRed2}
+\defbeamertemplate{section in toc}{square unnumbered}{%
+    \leavevmode\leftskip=1.75ex%
+    \llap{\textcolor{DarkRed2}{\vrule width1.85ex height1.85ex depth0ex}}%
+    \kern1.5ex\inserttocsection\par}
+\defbeamertemplate{subsection in toc}{square1 unnumbered}{%
+    \leavevmode\leftskip=3.75ex%
+    \llap{\textcolor{DarkRed2!90}{\vrule width1.2ex height1.2ex depth0ex}}%
+    \kern1.5ex\inserttocsubsection\par}
+\defbeamertemplate{subsubsection in toc}{square2 unnumbered}{%
+    \leavevmode\leftskip=5.75ex%
+    \llap{\textcolor{DarkRed2!80}{\vrule width0.8ex height0.8ex depth0ex}}%
+    \kern1.5ex\inserttocsubsection\par}
+\setbeamertemplate{headline}{}
+\setbeamertemplate{section in toc}[square unnumbered]
+\setbeamertemplate{subsection in toc}[square1 unnumbered]
+\setbeamertemplate{subsubsection in toc}[square2 unnumbered]
+
+\hypersetup{colorlinks,linkcolor=,urlcolor=links}
+\usepackage{graphicx,wrapfig,lipsum}
+\usepackage{amsmath}
+\usepackage{multirow}
+\usepackage{changepage}
+\usepackage{tikz}
+\usetikzlibrary{positioning}
+\usetikzlibrary{decorations, decorations.text,backgrounds}
+
+\title{Optimal Views Formulation}
+\author{Soumendu Majee}
+\date{}
+
+\begin{document}
+
+\begin{frame}[plain,noframenumbering]
+    \titlepage
+\end{frame}
+
+\AtBeginSection[]
+{
+  \begin{frame}[plain,noframenumbering]
+    \frametitle{Table of Contents}
+    \tableofcontents[
+        currentsection,
+        sectionstyle=show/shaded,
+        subsectionstyle=show/show/hide]
+  \end{frame}
+}
+
+\begin{frame}{Motivation}
+	\begin{itemize}
+	    \setlength\itemsep{2em}
+		\item Conventional CT scanning uses uniformly spaced view-angles
+		
+		\item Goal: Optimize view-angles to boost image quality for a class of objects
+		
+		
+	\end{itemize}
+\end{frame}
+
+\begin{frame}{CT Reconstruction}
+	\begin{itemize}
+	    \setlength\itemsep{2em}
+		\item Define:
+		
+	
+		
+		
+	\end{itemize}
+\end{frame}
+
+
+
+
+
+
+\bibliographystyle{IEEEtran}
+\setbeamertemplate{bibliography item}{\insertbiblabel}
+\bibliography{ref.bib}
+
+\end{document}
+
