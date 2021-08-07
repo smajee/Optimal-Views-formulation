@@ -134,11 +134,16 @@
 
 \begin{frame}{CT Reconstruction}
 	\begin{itemize}
-	    \setlength\itemsep{2em}
-		\item Define:
+	    \setlength\itemsep{1em}
+		\item View angles: $\theta = [\theta_1, \cdots, \theta_M ]^\top$
 		
-	
+		\item Photon-counts at angle $\theta_i$: $\lambda_i \sim \text{Poisson}\left(\lambda^0 \exp (-A_{\theta_i}x^0) \right)$
 		
+		\item Transmission measurements: $ y_i = - \log\left(\frac{\lambda_i}{\lambda^0}\right) $
+		
+		\item Chosen subset of all views: $I = \{i_1, i_2, \cdots, i_K \}$
+		
+		\item Transmission measurements 
 		
 	\end{itemize}
 \end{frame}
