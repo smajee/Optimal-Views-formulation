@@ -97,8 +97,14 @@
 \usepackage{multirow}
 \usepackage{changepage}
 \usepackage{tikz}
+\usepackage{algorithm2e}
+\usepackage{algorithmic}
 \usetikzlibrary{positioning}
 \usetikzlibrary{decorations, decorations.text,backgrounds}
+
+\DeclareMathOperator*{\argmax}{arg\,max}
+\DeclareMathOperator*{\argmin}{arg\,min}
+\newcommand{\norm}[1]{\left\lVert#1\right\rVert}
 
 \title{Optimal Views Formulation}
 \author{Soumendu Majee}
@@ -124,7 +130,7 @@
 \begin{frame}{Motivation}
 	\begin{itemize}
 	    \setlength\itemsep{2em}
-		\item Conventional CT scanning uses uniformly spaced view-angles
+		\item Conventional CT scanning typically uses uniformly spaced view-angles
 		
 		\item Goal: Optimize view-angles to boost image quality for a class of objects
 		
@@ -132,23 +138,95 @@
 	\end{itemize}
 \end{frame}
 
-\begin{frame}{CT Reconstruction}
+\begin{frame}{Domain of Optimized View-angles}
 	\begin{itemize}
-	    \setlength\itemsep{1em}
-		\item View angles: $\theta = [\theta_1, \cdots, \theta_M ]^\top$
+	    \setlength\itemsep{2em}
+		\item Continuous: view-angles chosen in $[0, 2\pi]$
+		\begin{itemize}
+		    \item Need to choose angle values in $[0, 2\pi]$
+	    \end{itemize}
 		
-		\item Photon-counts at angle $\theta_i$: $\lambda_i \sim \text{Poisson}\left(\lambda^0 \exp (-A_{\theta_i}x^0) \right)$
+		\item \textbf{Discrete}: view-angles chosen among dense set of angles: $\theta = \{\theta_1, \cdots, \theta_M \}$
+		\begin{itemize}
+		    \item Need to choose indices in $\{ 1, \cdots, M \}$
 		
-		\item Transmission measurements: $ y_i = - \log\left(\frac{\lambda_i}{\lambda^0}\right) $
+	    \end{itemize}
 		
-		\item Chosen subset of all views: $I = \{i_1, i_2, \cdots, i_K \}$
-		
-		\item Transmission measurements 
 		
 	\end{itemize}
 \end{frame}
 
+\begin{frame}{How to Measure Optimality?}
+	\begin{itemize}
+	    \setlength\itemsep{2em}
+		\item Optimal view indices: $I^* = \argmin_{I \subset \{ 1, \cdots, M \}, |I|=P} c(I)  $
+		
+		\item Cost $c(I) = \text{rmse}(x^0, R(x^0,I))$ 
+		\begin{itemize}
+		    \item $x^0$ : Ground truth CT object for training
+		    \item $R(x^0,I)$ : Image reconstructed with simulated data generated from $x^0$ using view indices in $I$
+		    \item Other image quality measures can also be used
+		
+	    \end{itemize}
+		
+		
+	\end{itemize}
+\end{frame}
 
+\begin{frame}{MBIR CT Reconstruction $R(x^0,I)$}
+	\begin{itemize}
+	    \setlength\itemsep{1em}
+		\item Full set of view-angles: $\theta = [\theta_1, \cdots, \theta_M ]^\top$
+		
+		\item Simulated measurements at angle $\theta_i$
+		\begin{itemize}
+		    \item Photon-counts: $\lambda_i \sim \text{Poisson}\left(\lambda^0 \exp (-A_{\theta_i}x^0) \right)$
+		    
+		    \item Transmission measurements: $ y_i = - \log\left(\frac{\lambda_i}{\lambda^0}\right) $
+		
+	    \end{itemize}
+	    
+		
+		\item Chosen subset of all view-angles: $I = \{i_1, i_2, \cdots, i_K \}$
+		
+		\item Measurement vector 
+		\begin{itemize}
+		    \item Photon-counts: $\lambda_I = [ \lambda_{i_1}^\top, \cdots, \lambda_{i_K}^\top ]^\top$
+		    
+		    \item Transmission measurements: 	$y_I = [ y_{i_1}^\top, \cdots, y_{i_K}^\top ]^\top$
+		
+	    \end{itemize}
+		
+	
+		
+		\item $-\log p\left( y_I | x \right) \approx \frac{1}{2} \norm{y_I - A_I x}^2_D $, where $D=\text{diag}(\lambda_I)$
+		
+		\item $R(x^0,I) = \argmin_x \left\{ \frac{1}{2} \norm{y_I - A_I x}^2_D + h(x) \right\}$
+		
+		
+	\end{itemize}
+\end{frame}
+
+\begin{frame}{Optimizing View-angles}
+	\begin{itemize}
+	    \setlength\itemsep{2em}
+		\item Greedy approach
+		
+		\begin{algorithm}[H]
+        \begin{algorithmic}[1]
+        \STATE $I = \{\}$
+        \WHILE{$|I|<P$}
+            \STATE  $i = \argmin_{i \in \{1,\cdots,M \} } c(I \cup \{ i \})$
+            \STATE $I = I \cup \{ i \}$
+        \ENDWHILE
+        
+        \end{algorithmic}
+        \label{alg:angle_greedy}
+        \end{algorithm}
+        
+	\end{itemize}
+	
+\end{frame}
 
 
 
