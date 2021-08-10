@@ -106,7 +106,7 @@
 \DeclareMathOperator*{\argmin}{arg\,min}
 \newcommand{\norm}[1]{\left\lVert#1\right\rVert}
 
-\title{Optimal Views Formulation}
+\title{Optimal Views for CT: Formulation}
 \author{Soumendu Majee}
 \date{}
 
@@ -178,26 +178,27 @@
 	    \setlength\itemsep{1em}
 		\item Full set of view-angles: $\theta = [\theta_1, \cdots, \theta_M ]^\top$
 		
-		\item Simulated measurements at angle $\theta_i$
+		\item At angle $\theta_i$
 		\begin{itemize}
-		    \item Photon-counts: $\lambda_i \sim \text{Poisson}\left(\lambda^0 \exp (-A_{\theta_i}x^0) \right)$
+		    \item Projection matrix: $A_{i}$
+		    
+		    \item Photon-counts: $\lambda_i \sim \text{Poisson}\left(\lambda^0 \exp (-A_{i}x^0) \right)$
 		    
 		    \item Transmission measurements: $ y_i = - \log\left(\frac{\lambda_i}{\lambda^0}\right) $
 		
 	    \end{itemize}
 	    
 		
-		\item Chosen subset of all view-angles: $I = \{i_1, i_2, \cdots, i_K \}$
+		\item With subset of all view-angles: $I = \{i_1, i_2, \cdots, i_K \}$
 		
-		\item Measurement vector 
 		\begin{itemize}
+		    \item Projection matrix: $A_I = [ A_{i_1}^\top, \cdots, A_{i_K}^\top ]^\top$
+		    
 		    \item Photon-counts: $\lambda_I = [ \lambda_{i_1}^\top, \cdots, \lambda_{i_K}^\top ]^\top$
 		    
 		    \item Transmission measurements: 	$y_I = [ y_{i_1}^\top, \cdots, y_{i_K}^\top ]^\top$
 		
 	    \end{itemize}
-		
-	
 		
 		\item $-\log p\left( y_I | x \right) \approx \frac{1}{2} \norm{y_I - A_I x}^2_D $, where $D=\text{diag}(\lambda_I)$
 		
