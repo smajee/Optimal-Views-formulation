@@ -232,31 +232,38 @@
 \end{frame}
 
 
-\begin{frame}{Discussion}
+\begin{frame}{Toy Problem}
 	\begin{itemize}
 	    \setlength\itemsep{2em}
-		\item Computing $c(I)$ can be slow: need to perform reconstruction
+		\item Set up small toy problem where the optimal views can be computed via brute-force
 		\begin{itemize}
-		    \item Faster reconstruction methods and smaller problem sizes would be useful
+		    \item Phantom: Downsampled shepp-logan phantom $16\times16$
+		    \item Search for "best" $4$ view-angles among equi-spaced $16$ angles
+		    \item Evaluate all ${16 \choose 4} = 1820$ possibilities
 	    \end{itemize}
 		
 		
-	    \item What MBIR implementation to use?
-	    \begin{itemize}
-		    \item TomoPy (\url{https://tomopy.readthedocs.io/en/latest/})
-		    \item svmbir (\url{https://svmbir.readthedocs.io/en/latest/})
-		    \item mirt (\url{https://github.com/JeffFessler/mirt})
-		    \item Something else?
-	    \end{itemize}
+	    \item Used svmbir (\url{https://svmbir.readthedocs.io/en/latest/}) iterative reconstruction with MRF prior
+	    
         
 	\end{itemize}
 	
 \end{frame}
 
 
-
-
-
+\begin{frame}{Toy Problem: Results}
+	\begin{itemize}
+	    \item Four equi-spaced angles: $0, 45, 90, 135$ degrees
+	    \item Four optimal angles: $22.5, 78.75, 101.25, 135$ degrees
+		\item Reconstruction with qui-spaced $4$ views: small features missing
+        
+	\end{itemize}
+	
+	\begin{figure}
+    \includegraphics[scale=1.0]{Figs/plot_recon_compare.png}
+    \end{figure}
+	
+\end{frame}
 
 \bibliographystyle{IEEEtran}
 \setbeamertemplate{bibliography item}{\insertbiblabel}
