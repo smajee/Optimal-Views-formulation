@@ -253,14 +253,27 @@
 
 \begin{frame}{Toy Problem: Results}
 	\begin{itemize}
-	    \item Four equi-spaced angles: $0, 45, 90, 135$ degrees
-	    \item Four optimal angles: $22.5, 78.75, 101.25, 135$ degrees
-		\item Reconstruction with qui-spaced $4$ views: small features missing
+	    \item Four equi-spaced angles: $0, 45, 90, 135$ degrees (nrmse: $0.2003$)
+	    \item Four optimal angles: $22.5, 78.75, 101.25, 135$ degrees (nrmse: $0.1799$)
+	    \item Four greedy angles: $0, 56.25, 90, 123.75$ degrees (nrmse: $0.1851$)
         
 	\end{itemize}
 	
 	\begin{figure}
     \includegraphics[scale=1.0]{Figs/plot_recon_compare2.png}
+    \end{figure}
+	
+\end{frame}
+
+\begin{frame}{Toy Problem: Tolerance for "Good"}
+	\begin{itemize}
+	    \item Four equi-spaced angles: $0, 45, 90, 135$ degrees (nrmse: $0.2003$)
+	    \item Four optimal angles: $22.5, 78.75, 101.25, 135$ degrees (nrmse: $0.1799$)
+	    \item Four greedy angles: $0, 56.25, 90, 123.75$ degrees (nrmse: $0.1851$)
+	\end{itemize}
+	
+	\begin{figure}
+    \includegraphics[scale=0.45]{Figs/cost_angles_plot.png}
     \end{figure}
 	
 \end{frame}
