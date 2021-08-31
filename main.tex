@@ -327,6 +327,27 @@
 	\end{itemize}
 \end{frame}
 
+\begin{frame}{Different Angle Search Formulation?}
+	\begin{itemize}
+	    \setlength\itemsep{2em}
+		    
+		\item Select set of angles that:
+	    \begin{itemize}
+    		\item Improve image quality
+    		\item Are "independent" (Provide complementary information)
+            
+    	\end{itemize}
+        
+        \item Use heuristic to guide search
+        \begin{itemize}
+    		\item Reconstruction residual $e_i$
+    	    \item Minimize $\sum_i \norm{e_i}^2$
+    	    \item Minimize $\sum_{i,j} e_i^\top e_j $
+            
+    	\end{itemize}
+        
+	\end{itemize}
+\end{frame}
 
 
 \bibliographystyle{IEEEtran}
