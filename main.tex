@@ -1,4 +1,4 @@
-\documentclass[english,aspectratio=169]{beamer}
+\documentclass[english,aspectratio=43]{beamer}
 \usefonttheme{serif}
 \usepackage[utf8]{inputenc}
 \usepackage{pxfonts} % Or palatino or mathpazo
@@ -260,13 +260,14 @@
 	\end{itemize}
 	
 	\begin{figure}
-    \includegraphics[scale=1.0]{Figs/plot_recon_compare2.png}
+    \includegraphics[scale=0.9]{Figs/plot_recon_compare2.png}
     \end{figure}
 	
 \end{frame}
 
 \begin{frame}{Toy Problem: Tolerance for "Good"}
 	\begin{itemize}
+	    \item Majority of angle combinations are "bad"
 	    \item Four equi-spaced angles: $0, 45, 90, 135$ degrees (nrmse: $0.2003$)
 	    \item Four optimal angles: $22.5, 78.75, 101.25, 135$ degrees (nrmse: $0.1799$)
 	    \item Four greedy angles: $0, 56.25, 90, 123.75$ degrees (nrmse: $0.1851$)
@@ -277,6 +278,56 @@
     \end{figure}
 	
 \end{frame}
+
+\begin{frame}{Drawbacks of Current Approach}
+	\begin{itemize}
+	\setlength\itemsep{2em}
+	    \item Brute-force:
+	        \begin{itemize}
+	            \item Slow
+	            \item Most combinations highly sub-optimal
+	        \end{itemize}
+	    
+	    \item Greedy:
+	        \begin{itemize}
+	            \item Slow
+	            \item Can get stuck in local minima
+	        \end{itemize}
+	        
+	    \item Reconstruction method:
+            \begin{itemize}
+                \item Needs to be good for very-sparse views
+            \end{itemize}
+	    
+	\end{itemize}
+\end{frame}
+
+\begin{frame}{Different Reconstruction Formulation}
+	\begin{itemize}
+	\setlength\itemsep{2em}
+	    \item Assumption 
+	        \begin{itemize}
+                \item Object mostly spherically symmetric
+                \item Allows for very sparse views
+            \end{itemize}
+            
+            \item Image model
+            \begin{itemize}
+                \item $x=h(\phi)$
+                \item $\phi$ represents lower dimensional manifold
+                \item Can be sum of ellipses (eg: Yoram's paper) or CNNs
+            \end{itemize}
+            
+            % \item Simulation: $y_I \sim N(A_I h(\phi^0), \lambda_0 \exp(-A_I h(\phi^0)))$
+            
+            \item Reconstruction:  $ \hat{\phi} = \argmin_{\phi} \left\{ \frac{1}{2} \norm{y_I - A_I h(\phi) }^2_D + g(\phi) \right\}$
+            
+            \item Image Quality: rmse($\hat{\phi}, \phi^0$)
+
+	\end{itemize}
+\end{frame}
+
+
 
 \bibliographystyle{IEEEtran}
 \setbeamertemplate{bibliography item}{\insertbiblabel}
