@@ -302,32 +302,32 @@
 	\end{itemize}
 \end{frame}
 
-\begin{frame}{Different Reconstruction Formulation}
-	\begin{itemize}
-	\setlength\itemsep{2em}
-	    \item Assumption 
-	        \begin{itemize}
-                \item Object mostly spherically symmetric
-                \item Allows for very sparse views
-            \end{itemize}
+% \begin{frame}{Different Reconstruction Formulation}
+% 	\begin{itemize}
+% 	\setlength\itemsep{2em}
+% 	    \item Assumption 
+% 	        \begin{itemize}
+%                 \item Object mostly spherically symmetric
+%                 \item Allows for very sparse views
+%             \end{itemize}
             
-            \item Image model
-            \begin{itemize}
-                \item $x=h(\phi)$
-                \item $\phi$ represents lower dimensional manifold
-                \item Can be sum of ellipses (eg: Yoram's paper) or CNNs
-            \end{itemize}
+%             \item Image model
+%             \begin{itemize}
+%                 \item $x=h(\phi)$
+%                 \item $\phi$ represents lower dimensional manifold
+%                 \item Can be sum of ellipses (eg: Yoram's paper) or CNNs
+%             \end{itemize}
             
-            % \item Simulation: $y_I \sim N(A_I h(\phi^0), \lambda_0 \exp(-A_I h(\phi^0)))$
+%             % \item Simulation: $y_I \sim N(A_I h(\phi^0), \lambda_0 \exp(-A_I h(\phi^0)))$
             
-            \item Reconstruction:  $ \hat{\phi} = \argmin_{\phi} \left\{ \frac{1}{2} \norm{y_I - A_I h(\phi) }^2_D + g(\phi) \right\}$
+%             \item Reconstruction:  $ \hat{\phi} = \argmin_{\phi} \left\{ \frac{1}{2} \norm{y_I - A_I h(\phi) }^2_D + g(\phi) \right\}$
             
-            \item Image Quality: rmse($\hat{\phi}, \phi^0$)
+%             \item Image Quality: rmse($\hat{\phi}, \phi^0$)
 
-	\end{itemize}
-\end{frame}
+% 	\end{itemize}
+% \end{frame}
 
-\begin{frame}{Different Angle Search Formulation?}
+\begin{frame}{Different Angle Search Formulation}
 	\begin{itemize}
 	    \setlength\itemsep{2em}
 		    
@@ -341,12 +341,17 @@
         \item Use heuristic to guide search
         \begin{itemize}
     		\item Reconstruction residual $e_i$
-    	    \item Minimize $\sum_i \norm{e_i}^2$
-    	    \item Minimize $\sum_{i,j} e_i^\top e_j $
+    	    \item Minimize $\norm{\sum_i e_i}^2$
+    	    \item Very Fast
+    	    \item Same results as "greedy"
             
     	\end{itemize}
         
 	\end{itemize}
+	
+	\begin{figure}
+    \includegraphics[scale=0.9]{Figs/plot_recon_compare3.png}
+    \end{figure}
 \end{frame}
 
 
