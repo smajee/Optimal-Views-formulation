@@ -284,7 +284,7 @@
 	\setlength\itemsep{2em}
 	    \item Brute-force:
 	        \begin{itemize}
-	            \item Slow
+	            \item Very slow
 	            \item Most combinations highly sub-optimal
 	        \end{itemize}
 	    
@@ -338,7 +338,7 @@
             
     	\end{itemize}
         
-        \item Heuristic guided search
+        \item Heuristic based search
         \begin{itemize}
     		\item Reconstruction residual $e_i$
     	    \item Minimize $\norm{\sum_i e_i}^2$
@@ -354,6 +354,23 @@
     \end{figure}
 \end{frame}
 
+
+\begin{frame}{How can we do better?}
+	\begin{itemize}
+	    \setlength\itemsep{2em}
+	    
+	    \item Want to get better results than greedy but faster that brute force
+		    
+		\item Heuristic guided search
+	    \begin{itemize}
+    		\item Evaluate actual cost where heuristic cost is low
+    	\end{itemize}
+    	
+    	\item Exploit reconstruction residuals in a different way
+
+	\end{itemize}
+	
+\end{frame}
 
 \bibliographystyle{IEEEtran}
 \setbeamertemplate{bibliography item}{\insertbiblabel}
