@@ -213,6 +213,9 @@
 \begin{frame}{Optimizing View-angles}
 	\begin{itemize}
 	    \setlength\itemsep{2em}
+	    
+	    \item Brute force: $I^* = \argmin_{I \subset \{ 1, \cdots, M \}, |I|=P} c(I)  $
+	        
 		\item Greedy approach
 		
 		\begin{algorithm}[H]
@@ -226,6 +229,21 @@
         \end{algorithmic}
         \label{alg:angle_greedy}
         \end{algorithm}
+        
+        \item Heuristic search
+        
+        \begin{algorithm}[H]
+        \begin{algorithmic}[1]
+        \STATE $I = \{\}$
+        \FOR{$i \in \{1,\cdots,M \}$}
+            \STATE $ e_i = x^0 - R(x^0,[i]) $
+        \ENDFOR
+        
+        \STATE $I^* = \argmin_{I \subset \{ 1, \cdots, M \}, |I|=P} \norm{\sum_{i \in I} e_i}^2  $
+        \end{algorithmic}
+        \label{alg:angle_heuristic}
+        \end{algorithm}
+        
         
 	\end{itemize}
 	
@@ -261,20 +279,6 @@
 	
 	\begin{figure}
     \includegraphics[scale=0.9]{Figs/plot_recon_compare2.png}
-    \end{figure}
-	
-\end{frame}
-
-\begin{frame}{Toy Problem: Tolerance for "Good"}
-	\begin{itemize}
-	    \item Majority of angle combinations are "bad"
-	    \item Four equi-spaced angles: $0, 45, 90, 135$ degrees (nrmse: $0.2003$)
-	    \item Four optimal angles: $22.5, 78.75, 101.25, 135$ degrees (nrmse: $0.1799$)
-	    \item Four greedy angles: $0, 56.25, 90, 123.75$ degrees (nrmse: $0.1851$)
-	\end{itemize}
-	
-	\begin{figure}
-    \includegraphics[scale=0.45]{Figs/cost_angles_plot.png}
     \end{figure}
 	
 \end{frame}
