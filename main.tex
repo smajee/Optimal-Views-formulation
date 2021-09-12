@@ -304,8 +304,62 @@
 	\end{itemize}
 	
 	\begin{figure}
-    \includegraphics[scale=0.9]{Figs/plot_recon_compare3.png}
+    \includegraphics[scale=0.9]{Figs/plot_recon_compare3_16-16-4.png}
     \end{figure}
+	
+\end{frame}
+
+\begin{frame}{Results: $32 \times 32$ phantom, $4$ angles out of $16$ }
+	\begin{itemize}
+	    \item Four equi-spaced angles: $0, 45, 90, 135$ degrees (nrmse: $0.338$)
+	    \item Four optimal angles: $ 0, 56.25,  90, 123.75$ degrees (nrmse: $0.325$)
+	    \item Four greedy angles: $0, 33.75, 90, 146.25$ degrees (nrmse: $0.351$)
+	    \item Four heuristic angles: $45, 78.75,  90, 135.$ degrees (nrmse: $0.417$)
+        
+	\end{itemize}
+	
+	\begin{figure}
+    \includegraphics[scale=0.9]{Figs/plot_recon_compare3_32-16-4.png}
+    \end{figure}
+	
+\end{frame}
+
+\begin{frame}{Results: $32 \times 32$ phantom, $4$ angles out of $16$ }
+	\begin{itemize}
+	    \setlength\itemsep{1.5em}
+	    \item What if we used lower resolution images for optimizing angles and then apply to higher resolution?
+	    
+	     \item Downsampled by $1$
+	    \begin{itemize}
+    		\item Equi-spaced nrmse $0.338$
+    		\item Greedy nrmse $0.351$
+    		\item Heuristic nrmse $0.417$
+    	\end{itemize}
+	    
+	    \item Downsampled by $2$
+	    \begin{itemize}
+    		\item Equi-spaced nrmse $0.338$
+    		\item Greedy nrmse $0.333$
+    		\item Heuristic nrmse $0.333$
+    	\end{itemize}
+	    
+	    \item Downsampled by $4$
+	    \begin{itemize}
+    		\item Equi-spaced nrmse $0.338$
+    		\item Greedy nrmse $0.356$
+    		\item Heuristic nrmse $0.414$
+    	\end{itemize}
+        
+	\end{itemize}
+	
+\end{frame}
+
+\begin{frame}{Conclusion}
+	\begin{itemize}
+	    \setlength\itemsep{2em}
+	    \item Optimized angles depend on phantom resolution
+	    \item When heuristic worse than greedy, both worse than equispaced
+	\end{itemize}
 	
 \end{frame}
 
