@@ -210,6 +210,31 @@
 	\end{itemize}
 \end{frame}
 
+% \begin{frame}{Different Reconstruction Formulation}
+% 	\begin{itemize}
+% 	\setlength\itemsep{2em}
+% 	    \item Assumption 
+% 	        \begin{itemize}
+%                 \item Object mostly spherically symmetric
+%                 \item Allows for very sparse views
+%             \end{itemize}
+            
+%             \item Image model
+%             \begin{itemize}
+%                 \item $x=h(\phi)$
+%                 \item $\phi$ represents lower dimensional manifold
+%                 \item Can be sum of ellipses (eg: Yoram's paper) or CNNs
+%             \end{itemize}
+            
+%             % \item Simulation: $y_I \sim N(A_I h(\phi^0), \lambda_0 \exp(-A_I h(\phi^0)))$
+            
+%             \item Reconstruction:  $ \hat{\phi} = \argmin_{\phi} \left\{ \frac{1}{2} \norm{y_I - A_I h(\phi) }^2_D + g(\phi) \right\}$
+            
+%             \item Image Quality: rmse($\hat{\phi}, \phi^0$)
+
+% 	\end{itemize}
+% \end{frame}
+
 \begin{frame}{Optimizing View-angles}
 	\begin{itemize}
 	    \setlength\itemsep{2em}
@@ -269,95 +294,20 @@
 \end{frame}
 
 
-\begin{frame}{Toy Problem: Results}
+\begin{frame}{Results: $16 \times 16$ phantom, $4$ angles out of $16$ }
 	\begin{itemize}
-	    \item Four equi-spaced angles: $0, 45, 90, 135$ degrees (nrmse: $0.2003$)
-	    \item Four optimal angles: $22.5, 78.75, 101.25, 135$ degrees (nrmse: $0.1799$)
-	    \item Four greedy angles: $0, 56.25, 90, 123.75$ degrees (nrmse: $0.1851$)
-        
-	\end{itemize}
-	
-	\begin{figure}
-    \includegraphics[scale=0.9]{Figs/plot_recon_compare2.png}
-    \end{figure}
-	
-\end{frame}
-
-\begin{frame}{Drawbacks of Current Approach}
-	\begin{itemize}
-	\setlength\itemsep{2em}
-	    \item Brute-force:
-	        \begin{itemize}
-	            \item Very slow
-	            \item Most combinations highly sub-optimal
-	        \end{itemize}
-	    
-	    \item Greedy:
-	        \begin{itemize}
-	            \item Slow
-	            \item Can get stuck in local minima
-	        \end{itemize}
-	        
-	    \item Reconstruction method:
-            \begin{itemize}
-                \item Needs to be good for very-sparse views
-            \end{itemize}
-	    
-	\end{itemize}
-\end{frame}
-
-% \begin{frame}{Different Reconstruction Formulation}
-% 	\begin{itemize}
-% 	\setlength\itemsep{2em}
-% 	    \item Assumption 
-% 	        \begin{itemize}
-%                 \item Object mostly spherically symmetric
-%                 \item Allows for very sparse views
-%             \end{itemize}
-            
-%             \item Image model
-%             \begin{itemize}
-%                 \item $x=h(\phi)$
-%                 \item $\phi$ represents lower dimensional manifold
-%                 \item Can be sum of ellipses (eg: Yoram's paper) or CNNs
-%             \end{itemize}
-            
-%             % \item Simulation: $y_I \sim N(A_I h(\phi^0), \lambda_0 \exp(-A_I h(\phi^0)))$
-            
-%             \item Reconstruction:  $ \hat{\phi} = \argmin_{\phi} \left\{ \frac{1}{2} \norm{y_I - A_I h(\phi) }^2_D + g(\phi) \right\}$
-            
-%             \item Image Quality: rmse($\hat{\phi}, \phi^0$)
-
-% 	\end{itemize}
-% \end{frame}
-
-\begin{frame}{Different Angle Search Formulation}
-	\begin{itemize}
-	    \setlength\itemsep{2em}
-		    
-		\item Select set of angles that:
-	    \begin{itemize}
-    		\item Improve image quality
-    		\item Are "independent" (Provide complementary information)
-            
-    	\end{itemize}
-        
-        \item Heuristic based search
-        \begin{itemize}
-    		\item Reconstruction residual $e_i$
-    	    \item Minimize $\norm{\sum_i e_i}^2$
-    	    \item Very Fast
-    	    \item Same results as "greedy" but much faster
-            
-    	\end{itemize}
+	    \item Four equi-spaced angles: $0, 45, 90, 135$ degrees (nrmse: $0.203$)
+	    \item Four optimal angles: $11.25, 67.5, 90, 123.7$ degrees (nrmse: $0.178$)
+	    \item Four greedy angles: $0, 56.25, 90, 123.75$ degrees (nrmse: $0.183$)
+	    \item Four heuristic angles: $0, 56.25, 90, 123.75$ degrees (nrmse: $0.183$)
         
 	\end{itemize}
 	
 	\begin{figure}
     \includegraphics[scale=0.9]{Figs/plot_recon_compare3.png}
     \end{figure}
+	
 \end{frame}
-
 
 \begin{frame}{How can we do better?}
 	\begin{itemize}
