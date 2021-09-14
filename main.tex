@@ -363,18 +363,47 @@
 	
 \end{frame}
 
+\begin{frame}{Cost Plot: $16 \times 16$ phantom, $4$ angles out of $16$ }
+	\begin{itemize}
+	    \item Angle difference based heuristic $(\Delta \theta_{\text{min}}/(\pi/4) - 1)^2$
+	    \item Points with lower difference based heuristic than optimal: $231$
+	    \item Points with lower residual based heuristic than optimal: $1$
+        
+	\end{itemize}
+	
+	\begin{figure}
+    \includegraphics[scale=0.5]{Figs/cost_comparison2_16-16-4.png}
+    \end{figure}
+    
+\end{frame}
+
+\begin{frame}{Cost Plot: $32 \times 32$ phantom, $4$ angles out of $16$ }
+	\begin{itemize}
+	    \item Angle difference based heuristic $(\Delta \theta_{\text{min}}/(\pi/4) - 1)^2$
+	    \item Points with lower difference based heuristic than optimal: $164$
+	    \item Points with lower residual based heuristic than optimal: $121$
+        
+	\end{itemize}
+	
+	\begin{figure}
+    \includegraphics[scale=0.5]{Figs/cost_comparison2_32-16-4.png}
+    \end{figure}
+    
+\end{frame}
+
 \begin{frame}{How can we do better?}
 	\begin{itemize}
 	    \setlength\itemsep{2em}
 	    
-	    \item Want to get better results than greedy but faster that brute force
+	    \item Want to get better results than greedy or equi-spaced but faster than brute force
 		    
 		\item Heuristic guided search
 	    \begin{itemize}
     		\item Evaluate actual cost where heuristic cost is low
     	\end{itemize}
     	
-    	\item Exploit reconstruction residuals in a different way
+    	\item Learn model to map single angle reconstruction residuals to the true cost
+    	
 
 	\end{itemize}
 	
